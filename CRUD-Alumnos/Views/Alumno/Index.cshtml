@@ -25,6 +25,9 @@
             @Html.DisplayNameFor(model => model.Sexo)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.IdCiudad)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FechaRegistro)
         </th>
         <th></th>
@@ -43,8 +46,22 @@
                 @Html.DisplayFor(modelItem => item.Edad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
+                @{
+                    if (item.Sexo == "M" || item.Sexo == "m")
+                    {
+                        <text>Masculino</text>
+                    }
+                    else
+                    {
+                        <text>Femenino</text>
+                    }
+                }
             </td>
+
+            <td>
+                @CRUD_Alumnos.Controllers.AlumnoController.NombreCiudad(item.IdCiudad)
+            </td>
+
             <td>
                 @*@Html.DisplayFor(modelItem => item.FechaRegistro)*@
                 @item.FechaRegistro.ToShortDateString()

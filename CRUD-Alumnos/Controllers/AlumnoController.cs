@@ -70,6 +70,14 @@ namespace CRUD_Alumnos.Controllers
             }
         }
 
+        public ActionResult ListaCiudades()
+        {
+            using (AlumnosEntities db = new AlumnosEntities())
+            {
+                return PartialView(db.Ciudad.ToList());
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Alumno a)
@@ -129,6 +137,14 @@ namespace CRUD_Alumnos.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public static string NombreCiudad (int IdCiudad)
+        {
+            using (AlumnosEntities db = new AlumnosEntities())
+            {
+                return db.Ciudad.Find(IdCiudad).Nombre;
             }
         }
     }

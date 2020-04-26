@@ -213,6 +213,7 @@
     <Content Include="Views\Alumno\Agregar.cshtml" />
     <Content Include="Views\Alumno\Editar.cshtml" />
     <Content Include="Views\Alumno\Detalles.cshtml" />
+    <Content Include="Views\Alumno\ListaCiudades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
