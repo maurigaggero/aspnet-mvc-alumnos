@@ -4,12 +4,21 @@
     <EntitySetMapping Name="Alumno">
       <EntityTypeMapping TypeName="AlumnosModel.Alumno">
         <MappingFragment StoreEntitySet="Alumno">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-          <ScalarProperty Name="Edad" ColumnName="Edad" />
-          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciudad">
+      <EntityTypeMapping TypeName="AlumnosModel.Ciudad">
+        <MappingFragment StoreEntitySet="Ciudad">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

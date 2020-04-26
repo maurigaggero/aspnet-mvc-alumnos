@@ -15,24 +15,25 @@ namespace CRUD_Alumnos.Models
 
     public partial class Alumno
     {
+        
         public int Id { get; set; }
-
         [Required]
-        [Display(Name = "Ingrese nombres")]
+        [Display(Name = "Ingrese nombre")]
         public string Nombres { get; set; }
-
         [Required]
         [Display(Name = "Ingrese apellido")]
         public string Apellido { get; set; }
-
         [Required]
         [Display(Name = "Ingrese edad")]
         public int Edad { get; set; }
-
         [Required]
         [Display(Name = "Ingrese sexo")]
         public string Sexo { get; set; }
-
         public System.DateTime FechaRegistro { get; set; }
+        [Required]
+        [Display(Name = "Ingrese ciudad")]
+        public int IdCiudad { get; set; }
+    
+        public virtual Ciudad Ciudad { get; set; }
     }
 }

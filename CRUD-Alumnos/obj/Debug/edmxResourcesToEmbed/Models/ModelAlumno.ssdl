@@ -10,8 +10,33 @@
     <Property Name="Edad" Type="int" Nullable="false" />
     <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="IdCiudad" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Alumno_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AlumnosModelStoreContainer">
     <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Alumno_Ciudad" Association="Self.FK_Alumno_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

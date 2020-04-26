@@ -136,6 +136,9 @@
     <Compile Include="Models\Alumno.cs">
       <DependentUpon>ModelAlumno.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ciudad.cs">
+      <DependentUpon>ModelAlumno.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelAlumno.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

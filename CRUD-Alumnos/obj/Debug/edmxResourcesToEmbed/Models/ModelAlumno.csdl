@@ -1,17 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AlumnosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AlumnosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumno" EntityType="AlumnosModel.Alumno" />
+    <EntitySet Name="Ciudad" EntityType="AlumnosModel.Ciudad" />
+    <AssociationSet Name="FK_Alumno_Ciudad" Association="AlumnosModel.FK_Alumno_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Alumno">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombres" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Apellido" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="Edad" Type="Int32" Nullable="false" />
-    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ciudad" Relationship="AlumnosModel.FK_Alumno_Ciudad" FromRole="Alumno" ToRole="Ciudad" />
   </EntityType>
-  <EntityContainer Name="AlumnosEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Alumno" EntityType="Self.Alumno" />
-  </EntityContainer>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Alumno" Relationship="AlumnosModel.FK_Alumno_Ciudad" FromRole="Ciudad" ToRole="Alumno" />
+  </EntityType>
+  <Association Name="FK_Alumno_Ciudad">
+    <End Type="AlumnosModel.Ciudad" Role="Ciudad" Multiplicity="1" />
+    <End Type="AlumnosModel.Alumno" Role="Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="IdCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
